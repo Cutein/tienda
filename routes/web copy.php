@@ -1,16 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
 Route::middleware('auth')->group(function () {
-
-    Route::get('/', function () {
-        $products = Product::orderBy('created_at', 'desc')->get();
-        return view('products.index', compact('products'));
-    })->name('products.index');
 
     Route::get('products', function () {
         $products = Product::orderBy('created_at', 'desc')->get();
@@ -48,5 +41,3 @@ Route::middleware('auth')->group(function () {
         return redirect()->route('products.index')->with('info','Producto actualizado exitosamente');;
     })->name('products.update');
 });
-
-require __DIR__.'/auth.php';
